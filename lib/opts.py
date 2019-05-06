@@ -52,9 +52,9 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 5e-4)')
 
 # ========================= Monitor Configs ==========================
-parser.add_argument('--print-freq', '-p', default=20, type=int,
+parser.add_argument('--print-freq', '-p', default=200, type=int,
                     metavar='N', help='print frequency (default: 20)')
-parser.add_argument('--eval-freq', '-ef', default=2, type=int,
+parser.add_argument('--eval-freq', '-ef', default=10, type=int,
                     metavar='N', help='evaluation frequency (default: 2)')
 
 # ========================= Runtime Configs ==========================
@@ -73,8 +73,8 @@ args = parser.parse_args()
 if args.mode == "2D":
      args.t_length = 1
 
-experiment_id = '_'.join(map(str, [args.dataset, args.arch, args.mode, 
-           'length'+str(args.t_length), 'stride'+str(args.t_stride), 
+experiment_id = '_'.join(map(str, [args.dataset, args.arch, args.mode,
+           'length'+str(args.t_length), 'stride'+str(args.t_stride),
            'dropout'+str(args.dropout)]))
 
 if args.pretrained and args.pretrained_model:
