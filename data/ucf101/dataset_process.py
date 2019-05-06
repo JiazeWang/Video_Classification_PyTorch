@@ -11,7 +11,7 @@ for (filename_input, filename_output) in zip(files_input, files_output):
     idx_categories = []
     for line in lines:
         line = line.rstrip()
-        items = line.split(' ')
+        line = line.split(' ')
         curFolder = line[0]
         num = len(os.listdir(curFolder))
         curIDX = line[1]
