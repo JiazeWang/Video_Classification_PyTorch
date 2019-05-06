@@ -1,6 +1,7 @@
 import os
 import pdb
 
+output = []
 files_input = ["ucf_test1.txt","ucf_train1.txt"]
 files_output = ['val_ucf.txt','train_ucf.txt']
 for (filename_input, filename_output) in zip(files_input, files_output):
