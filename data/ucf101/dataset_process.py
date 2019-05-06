@@ -15,7 +15,7 @@ for (filename_input, filename_output) in zip(files_input, files_output):
         curFolder = line[0]
         num = len(os.listdir(curFolder))
         curIDX = line[1]
-        output.append('%s %d %d'%(curFolder, num, curIDX))
-        print('%s %d %d'%(curFolder, num, curIDX))
+        output.append('%s %s %s'%(curFolder, num, curIDX))
+        print('%s %s %s'%(curFolder, num, curIDX))
     with open(filename_output,'w') as f:
         f.write('\n'.join(output))
