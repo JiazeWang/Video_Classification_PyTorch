@@ -32,14 +32,16 @@ def main():
         num_class = 400
     elif args.dataset == 'kinetics200':
         num_class = 200
+    elif args.dataset == 'something'
+        num_class = 174
     else:
         raise ValueError('Unknown dataset '+args.dataset)
 
-    data_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+    data_root = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              "data/{}/access".format(args.dataset))
 
     # create model
-    org_model = VideoModule(num_class=num_class, 
+    org_model = VideoModule(num_class=num_class,
         base_model_name=args.arch,
         dropout=args.dropout,
         pretrained=args.pretrained,
@@ -84,16 +86,16 @@ def main():
         ToTorchFormatTensor(),
         GroupNormalize(),
         ])
-    train_dataset = VideoDataSet(root_path=data_root, 
+    train_dataset = VideoDataSet(root_path=data_root,
         list_file=args.train_list,
-        t_length=args.t_length, 
-        t_stride=args.t_stride, 
+        t_length=args.t_length,
+        t_stride=args.t_stride,
         num_segments=args.num_segments,
-        image_tmpl=args.image_tmpl, 
+        image_tmpl=args.image_tmpl,
         transform=train_transform,
         phase="Train")
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, 
+        train_dataset,
         batch_size=args.batch_size, shuffle=True, drop_last=True,
         num_workers=args.workers, pin_memory=True)
 
@@ -105,7 +107,7 @@ def main():
         ToTorchFormatTensor(),
         GroupNormalize(),
         ])
-    val_dataset = VideoDataSet(root_path=data_root, 
+    val_dataset = VideoDataSet(root_path=data_root,
         list_file=args.val_list,
         t_length=args.t_length,
         t_stride=args.t_stride,
@@ -115,7 +117,7 @@ def main():
         phase="Val")
     val_loader = torch.utils.data.DataLoader(
         val_dataset,
-        batch_size=args.batch_size, shuffle=False, 
+        batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     if args.mode != "3D":
