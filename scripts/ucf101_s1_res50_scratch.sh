@@ -1,15 +1,16 @@
 # CUDA_LAUNCH_BLOCKING=1 \
 CUDA_VISIBLE_DEVICES=0,1,2,3 \
-python main.py \
+python ../main.py \
 ucf101 \
-data/list/train_ucf.txt \
-data/list/val_ucf.txt \
+../data/ucf101/train_ucf.txt \
+../data/ucf101/val_ucf.txt \
 --arch resnet50_3d \
 --dro 0.4 \
 --mode 3D \
 --t_length 16 \
 --t_stride 4 \
 --epochs 90 \
+--pretrained \
 --batch-size 16 \
 --lr 0.01 \
 --lr_steps 40 80 \
