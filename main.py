@@ -32,7 +32,7 @@ def main():
         num_class = 400
     elif args.dataset == 'kinetics200':
         num_class = 200
-    elif args.dataset == 'something'
+    elif args.dataset == 'something':
         num_class = 174
     else:
         raise ValueError('Unknown dataset '+args.dataset)
