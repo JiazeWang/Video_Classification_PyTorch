@@ -14,6 +14,20 @@ model_urls = {
     'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',
 }
 
+class GloAvgPool3d(nn.Module):
+    def __init__(self):
+        super(GloAvgPool3d, self).__init__()
+        self.stride = 1
+        self.padding = 0
+        self.ceil_mode = False
+        self.count_include_pad = True
+
+    def forward(self, input):
+        input_shape = input.shape
+        kernel_size = input_shape[2:]
+        return F.avg_pool3d(input, kernel_size, self.stride,
+                            self.padding, self.ceil_mode, self.count_include_pad)
+
 
 def conv1x3x3(in_planes, out_planes, stride=1, t_stride=1):
     """1x3x3 convolution with padding"""
@@ -410,11 +424,11 @@ class ResNet3D(nn.Module):
         self.layer2 = self._make_layer(block[1], 128, layers[1], stride=2)
         self.layer3 = self._make_layer(block[2], 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block[3], 512, layers[3], stride=2)
-        self.avgpool_1 = nn.AvgPool3d(kernel_size=(1, 7, 7), stride=1)
-        self.avgpool_2 = nn.AvgPool3d(kernel_size=(2, 7, 7), stride=1)
-        self.avgpool_3 = nn.AvgPool3d(kernel_size=(4, 7, 7), stride=1)
-        self.avgpool_4 = nn.AvgPool3d(kernel_size=(8, 7, 7), stride=1)
-        self.avgpool_5 = nn.AvgPool3d(kernel_size=(16, 7, 7), stride=1)
+        self.avgpool_1 = GloAvgPool3d()
+        self.avgpool_2 = GloAvgPool3d()
+        self.avgpool_3 = GloAvgPool3d()
+        self.avgpool_4 = GloAvgPool3d()
+        self.avgpool_5 = GloAvgPool3d()
         self.feat_dim = 512 * block[0].expansion
         if not feat:
             self.fc = nn.Linear(512 * block[0].expansion * 5, num_classes)
