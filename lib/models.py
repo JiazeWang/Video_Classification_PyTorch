@@ -9,11 +9,12 @@ from .networks.resnet_3d_new import resnet50_3d_v1, resnet101_3d_v1, resnet50_3d
 from .networks.gsv_resnet_3d_v1 import gsv_resnet50_3d_v1
 from .networks.gsvnet import *
 from .networks.msvnet import *
+from .networks.resnet_mgn import resnet50_mgn
 
 from .transforms import *
 
 class VideoModule(nn.Module):
-    def __init__(self, num_class, base_model_name='resnet50', 
+    def __init__(self, num_class, base_model_name='resnet50_mgn',
                  before_softmax=True, dropout=0.8, pretrained=True, pretrained_model=None):
         super(VideoModule, self).__init__()
         self.num_class = num_class
@@ -44,11 +45,11 @@ class VideoModule(nn.Module):
             self.base_model = eval(base_model_name)(pretrained=self.pretrained, \
                                    feat=True, pretrained_model=base_model_dict)
         elif base_model_name == "mnet2":
-            model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 
+            model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                       "../models/mobilenet_v2.pth.tar")
             self.base_model = mnet2(pretrained=model_path, feat=True)
         elif base_model_name == "mnet2_3d":
-            model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 
+            model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                       "../models/mobilenet_v2.pth.tar")
             self.base_model = mnet2_3d(pretrained=model_path, feat=True)
         elif "fst" in base_model_name or "msv" in base_model_name:
@@ -68,7 +69,7 @@ class VideoModule(nn.Module):
             if isinstance(m, nn.Linear):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='linear')
                 nn.init.constant_(m.bias, 0)
-        
+
         if self.pretrained and self.pretrained_model:
             self.classifier.load_state_dict(classifier_dict)
 
@@ -98,9 +99,9 @@ class VideoModule(nn.Module):
 
 class TSN(nn.Module):
     """Temporal Segment Network
-    
+
     """
-    def __init__(self, batch_size, video_module, num_segments=1, t_length=1, 
+    def __init__(self, batch_size, video_module, num_segments=1, t_length=1,
                  crop_fusion_type='max', mode="3D"):
         super(TSN, self).__init__()
         self.t_length = t_length
@@ -129,8 +130,8 @@ class TSN(nn.Module):
         # base network forward
         output = self.video_module(input)
         # fuse output
-        output = output.view((self.batch_size, 
-                              output.shape[0] // (self.batch_size * self.num_segments), 
+        output = output.view((self.batch_size,
+                              output.shape[0] // (self.batch_size * self.num_segments),
                               self.num_segments, output.shape[1]))
         if self.crop_fusion_type == 'max':
             # pdb.set_trace()
