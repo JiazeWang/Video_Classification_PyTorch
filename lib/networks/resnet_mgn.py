@@ -528,20 +528,22 @@ def part_state_dict(state_dict, model_dict):
 def inflate_state_dict(pretrained_dict, model_dict):
     for k in pretrained_dict.keys():
         if pretrained_dict[k].size() != model_dict[k].size():
-            print(pretrained_dict[k].size()[:2], '   ', model_dict[k].size()[:2])
+            """
             assert(pretrained_dict[k].size()[:2] == model_dict[k].size()[:2]), \
                    "To inflate, channel number should match."
             assert(pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]), \
                    "To inflate, spatial kernel size should match."
-            print("Layer {} needs inflation.".format(k))
-            shape = list(pretrained_dict[k].shape)
-            shape.insert(2, 1)
-            t_length = model_dict[k].shape[2]
-            pretrained_dict[k] = pretrained_dict[k].reshape(shape)
-            if t_length != 1:
-                pretrained_dict[k] = pretrained_dict[k].expand_as(model_dict[k]) / t_length
-            assert(pretrained_dict[k].size() == model_dict[k].size()), \
-                   "After inflation, model shape should match."
+            """
+            if pretrained_dict[k].size()[:2] == model_dict[k].size()[:2] and pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]
+                print("Layer {} needs inflation.".format(k))
+                shape = list(pretrained_dict[k].shape)
+                shape.insert(2, 1)
+                t_length = model_dict[k].shape[2]
+                pretrained_dict[k] = pretrained_dict[k].reshape(shape)
+                if t_length != 1:
+                    pretrained_dict[k] = pretrained_dict[k].expand_as(model_dict[k]) / t_length
+                assert(pretrained_dict[k].size() == model_dict[k].size()), \
+                       "After inflation, model shape should match."
 
     return pretrained_dict
 
