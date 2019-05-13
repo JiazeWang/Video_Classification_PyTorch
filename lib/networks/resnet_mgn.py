@@ -32,7 +32,7 @@ class Bottleneck3D_11113(nn.Module):
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, t_stride=1, downsample=None):
-        super(Bottleneck3D_100, self).__init__()
+        super(Bottleneck3D_11113, self).__init__()
 
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
@@ -117,7 +117,7 @@ class Bottleneck3D_11133(nn.Module):
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, t_stride=1, downsample=None):
-        super(Bottleneck3D_100, self).__init__()
+        super(Bottleneck3D_11133, self).__init__()
 
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
@@ -202,7 +202,7 @@ class Bottleneck3D_11333(nn.Module):
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, t_stride=1, downsample=None):
-        super(Bottleneck3D_100, self).__init__()
+        super(Bottleneck3D_11333, self).__init__()
 
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
@@ -287,7 +287,7 @@ class Bottleneck3D_13333(nn.Module):
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, t_stride=1, downsample=None):
-        super(Bottleneck3D_100, self).__init__()
+        super(Bottleneck3D_13333, self).__init__()
 
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
