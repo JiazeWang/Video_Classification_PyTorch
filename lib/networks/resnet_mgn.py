@@ -98,12 +98,12 @@ class Bottleneck3D_11113(nn.Module):
         out5 = self.relu(out5)
 
         out = torch.cat([out1, out2, out3, out4, out5], dim=2)
-        #print('out.shape:', out.shape)
+        print('out_1.shape:', out.shape)
 
         out = self.conv2(out)
         out = self.bn2(out)
         out = self.relu(out)
-
+        print('out_2.shape:', out.shape)
         out = self.conv3(out)
         out = self.bn3(out)
         print("out.shape:", out.shape)
