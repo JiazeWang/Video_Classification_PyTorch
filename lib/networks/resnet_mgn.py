@@ -429,7 +429,7 @@ class ResNet3D(nn.Module):
         self.avgpool_3 = GloAvgPool3d()
         self.avgpool_4 = GloAvgPool3d()
         self.avgpool_5 = GloAvgPool3d()
-        self.feat_dim = 512 * block[0].expansion
+        self.feat_dim = 512 * block[0].expansion * 5
         if not feat:
             self.fc = nn.Linear(512 * block[0].expansion * 5, num_classes)
 
