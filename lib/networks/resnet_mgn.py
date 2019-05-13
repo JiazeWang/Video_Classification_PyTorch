@@ -37,27 +37,27 @@ class Bottleneck3D_11113(nn.Module):
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_1 = nn.BatchNorm3d(planes)
 
         self.conv1_2 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_2 = nn.BatchNorm3d(planes)
 
         self.conv1_3 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_3 = nn.BatchNorm3d(planes)
 
         self.conv1_4 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_4 = nn.BatchNorm3d(planes)
 
         self.conv1_5 = nn.Conv3d(inplanes, planes, kernel_size=(3, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_5 = nn.BatchNorm3d(planes)
 
         self.conv2 = nn.Conv3d(planes, planes, kernel_size=(1, 3, 3),
@@ -126,17 +126,17 @@ class Bottleneck3D_11133(nn.Module):
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_1 = nn.BatchNorm3d(planes)
 
         self.conv1_2 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_2 = nn.BatchNorm3d(planes)
 
         self.conv1_3 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_3 = nn.BatchNorm3d(planes)
 
         self.conv1_4 = nn.Conv3d(inplanes, planes, kernel_size=(3, 1, 1),
@@ -211,12 +211,12 @@ class Bottleneck3D_11333(nn.Module):
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_1 = nn.BatchNorm3d(planes)
 
         self.conv1_2 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_2 = nn.BatchNorm3d(planes)
 
         self.conv1_3 = nn.Conv3d(inplanes, planes, kernel_size=(3, 1, 1),
@@ -296,7 +296,7 @@ class Bottleneck3D_13333(nn.Module):
 
         self.conv1_1 = nn.Conv3d(inplanes, planes, kernel_size=(1, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(1, 0, 0), bias=False)
+                               padding=(0, 0, 0), bias=False)
         self.bn1_1 = nn.BatchNorm3d(planes)
 
         self.conv1_2 = nn.Conv3d(inplanes, planes, kernel_size=(3, 1, 1),
