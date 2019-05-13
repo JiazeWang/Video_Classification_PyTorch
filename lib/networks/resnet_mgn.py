@@ -395,17 +395,17 @@ class ResNet3D(nn.Module):
         self.bn1_2 = nn.BatchNorm3d(64)
 
         self.conv1_3 = nn.Conv3d(3, 64, kernel_size=(3, 7, 7),
-                               stride=(1, 2, 2), padding=(0, 3, 3),
+                               stride=(1, 2, 2), padding=(1, 3, 3),
                                bias=False)
         self.bn1_3 = nn.BatchNorm3d(64)
 
         self.conv1_4 = nn.Conv3d(3, 64, kernel_size=(3, 7, 7),
-                               stride=(1, 2, 2), padding=(0, 3, 3),
+                               stride=(1, 2, 2), padding=(1, 3, 3),
                                bias=False)
         self.bn1_4 = nn.BatchNorm3d(64)
 
         self.conv1_5 = nn.Conv3d(3, 64, kernel_size=(5, 7, 7),
-                               stride=(1, 2, 2), padding=(0, 3, 3),
+                               stride=(1, 2, 2), padding=(2, 3, 3),
                                bias=False)
         self.bn1_5 = nn.BatchNorm3d(64)
 
