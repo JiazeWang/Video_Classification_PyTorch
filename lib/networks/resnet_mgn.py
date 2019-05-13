@@ -57,7 +57,7 @@ class Bottleneck3D_11113(nn.Module):
 
         self.conv1_5 = nn.Conv3d(inplanes, planes, kernel_size=(3, 1, 1),
                                stride=(t_stride, 1, 1),
-                               padding=(0, 0, 0), bias=False)
+                               padding=(1, 0, 0), bias=False)
         self.bn1_5 = nn.BatchNorm3d(planes)
 
         self.conv2 = nn.Conv3d(planes, planes, kernel_size=(1, 3, 3),
