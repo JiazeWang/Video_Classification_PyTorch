@@ -534,7 +534,7 @@ def inflate_state_dict(pretrained_dict, model_dict):
             assert(pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]), \
                    "To inflate, spatial kernel size should match."
             """
-            if pretrained_dict[k].size()[:2] == model_dict[k].size()[:2] and pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]
+            if pretrained_dict[k].size()[:2] == model_dict[k].size()[:2] and pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]:
                 print("Layer {} needs inflation.".format(k))
                 shape = list(pretrained_dict[k].shape)
                 shape.insert(2, 1)
