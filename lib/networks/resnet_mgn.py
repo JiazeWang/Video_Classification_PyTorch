@@ -71,7 +71,6 @@ class Bottleneck3D_11113(nn.Module):
 
     def forward(self, x):
         residual = x
-        print("r1.shape:", residual.shape)
         x1 = x[:, :, 0:1, :, :]
         out1 = self.conv1_1(x1)
         out1 = self.bn1_1(out1)
@@ -98,19 +97,15 @@ class Bottleneck3D_11113(nn.Module):
         out5 = self.relu(out5)
 
         out = torch.cat([out1, out2, out3, out4, out5], dim=2)
-        print('out_1.shape:', out.shape)
 
         out = self.conv2(out)
         out = self.bn2(out)
         out = self.relu(out)
-        print('out_2.shape:', out.shape)
         out = self.conv3(out)
         out = self.bn3(out)
-        print("out.shape:", out.shape)
 
         if self.downsample is not None:
             residual = self.downsample(x)
-            print("r2.shape:", residual.shape)
 
         out += residual
         out = self.relu(out)
@@ -453,22 +448,17 @@ class ResNet3D(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        print('x.shape:', x.shape)
         x1 = x[:, :, ::16, :, :]
-        print("x1.shape", x1.shape)
         x1 = self.conv1_1(x1)
         x1 = self.bn1_1(x1)
         x1 = self.relu(x1)
         x1 = self.maxpool(x1)
-        print("x1.shape", x1.shape)
 
         x2 = x[:, :, ::8, :, :]
-        print("x2.shape", x2.shape)
         x2 = self.conv1_2(x2)
         x2 = self.bn1_2(x2)
         x2 = self.relu(x2)
         x2 = self.maxpool(x2)
-        print("x2.shape", x2.shape)
 
         x3 = x[:, :, ::4, :, :]
         x3 = self.conv1_3(x3)
@@ -483,12 +473,10 @@ class ResNet3D(nn.Module):
         x4 = self.maxpool(x4)
 
         x5 = x[:, :, :, :, :]
-        print("x5.shape", x5.shape)
         x5 = self.conv1_5(x5)
         x5 = self.bn1_5(x5)
         x5 = self.relu(x5)
         x5 = self.maxpool(x5)
-        print("x5.shape", x5.shape)
 
         x = torch.cat([x1, x2, x3, x4, x5], dim=2)
 
@@ -598,7 +586,11 @@ def resnet50_mgn(pretrained=False, feat=False, **kwargs):
             state_dict = kwargs['pretrained_model']
         if feat:
             new_state_dict = part_state_dict(state_dict, model.state_dict())
-            model.load_state_dict(new_state_dict)
+            #model.load_state_dict(new_state_dict)
+            model_dict = model.state_dict()
+            pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_dict and v.size() == model_dict[k].size()}
+            model_dict.update(pretrained_state)
+            model.load_state_dict(model_dict)
     return model
 
 if __name__ == '__main__':
