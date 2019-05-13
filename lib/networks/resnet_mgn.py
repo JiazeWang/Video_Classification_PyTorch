@@ -571,7 +571,7 @@ def resnet50_mgn(pretrained=False, feat=False, **kwargs):
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet3D([Bottleneck3D_000, Bottleneck3D_000, Bottleneck3D_100, Bottleneck3D_100],
+    model = ResNet3D([Bottleneck3D_11113, Bottleneck3D_11133, Bottleneck3D_11333, Bottleneck3D_13333],
                      [3, 4, 6, 3], feat=feat, **kwargs)
     # import pdb
     # pdb.set_trace()
