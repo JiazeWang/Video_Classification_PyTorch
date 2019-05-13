@@ -608,7 +608,7 @@ if __name__ == '__main__':
     model_dict = model.state_dict()
     state_dict = model_zoo.load_url(model_urls['resnet50'])
     new_state_dict = part_state_dict(state_dict, model.state_dict())
-    pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_state and v.size() == model_state[k].size()}
+    pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_dict and v.size() == model_dict[k].size()}
     print(pretrained_state)
     model.load_state_dict(pretrained_state)
     print(net)
