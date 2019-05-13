@@ -424,10 +424,11 @@ class ResNet3D(nn.Module):
             if isinstance(m, nn.Conv3d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
             elif isinstance(m, nn.BatchNorm3d):
-                if block[0] is BasicBlockSTF_Residual and "_2" in n:
-                    nn.init.constant_(m.weight, 0)
-                else:
-                    nn.init.constant_(m.weight, 1)
+                #if block[0] is BasicBlockSTF_Residual and "_2" in n:
+
+                #    nn.init.constant_(m.weight, 0)
+                #else:
+                nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
 
     def _make_layer(self, block, planes, blocks, stride=1, t_stride=1):
