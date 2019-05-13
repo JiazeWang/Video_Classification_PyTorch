@@ -592,7 +592,7 @@ if __name__ == '__main__':
 # Test the model, before you train it.
     net = resnet50_mgn()
     print(net)
-    input = Variable(torch.FloatTensor(8, 3, 16, 224, 224))
+    input = (torch.FloatTensor(8, 3, 16, 224, 224))
     output = net(input)
     print('net output size:')
     print(output.shape)
