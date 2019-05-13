@@ -528,6 +528,7 @@ def part_state_dict(state_dict, model_dict):
 def inflate_state_dict(pretrained_dict, model_dict):
     for k in pretrained_dict.keys():
         if pretrained_dict[k].size() != model_dict[k].size():
+            print(pretrained_dict[k].size()[:2], '   ', model_dict[k].size()[:2])
             assert(pretrained_dict[k].size()[:2] == model_dict[k].size()[:2]), \
                    "To inflate, channel number should match."
             assert(pretrained_dict[k].size()[-2:] == model_dict[k].size()[-2:]), \
