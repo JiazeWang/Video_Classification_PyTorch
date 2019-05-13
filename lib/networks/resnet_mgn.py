@@ -96,7 +96,8 @@ class Bottleneck3D_11113(nn.Module):
         out5 = self.bn1_5(out5)
         out5 = self.relu(out5)
 
-        out = torch.cat([x1, x2, x3, x4, x5], dim=2)
+        out = torch.cat([out1, out2, out3, out4, out5], dim=2)
+        #print('out.shape:', out.shape)
 
         out = self.conv2(out)
         out = self.bn2(out)
@@ -181,7 +182,7 @@ class Bottleneck3D_11133(nn.Module):
         out5 = self.bn1_5(out5)
         out5 = self.relu(out5)
 
-        out = torch.cat([x1, x2, x3, x4, x5], dim=2)
+        out = torch.cat([out1, out2, out3, out4, out5], dim=2)
 
         out = self.conv2(out)
         out = self.bn2(out)
@@ -266,7 +267,7 @@ class Bottleneck3D_11333(nn.Module):
         out5 = self.bn1_5(out5)
         out5 = self.relu(out5)
 
-        out = torch.cat([x1, x2, x3, x4, x5], dim=2)
+        out = torch.cat([out1, out2, out3, out4, out5], dim=2)
 
         out = self.conv2(out)
         out = self.bn2(out)
@@ -351,7 +352,7 @@ class Bottleneck3D_13333(nn.Module):
         out5 = self.bn1_5(out5)
         out5 = self.relu(out5)
 
-        out = torch.cat([x1, x2, x3, x4, x5], dim=2)
+        out = torch.cat([out1, out2, out3, out4, out5], dim=2)
 
         out = self.conv2(out)
         out = self.bn2(out)
