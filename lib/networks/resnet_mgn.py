@@ -605,9 +605,12 @@ if __name__ == '__main__':
 # Here I left a simple forward function.
 # Test the model, before you train it.
     model = resnet50_mgn()
+    model_dict = model.state_dict()
     state_dict = model_zoo.load_url(model_urls['resnet50'])
     new_state_dict = part_state_dict(state_dict, model.state_dict())
-    model.load_state_dict(new_state_dict)
+    pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_state and v.size() == model_state[k].size()}
+    print(pretrained_state)
+    model.load_state_dict(pretrained_state)
     print(net)
     input = (torch.FloatTensor(8, 3, 16, 224, 224))
     output = net(input)
