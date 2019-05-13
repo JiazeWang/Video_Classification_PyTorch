@@ -453,17 +453,22 @@ class ResNet3D(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        print('x.shape:', x.shape)
         x1 = x[:, :, ::16, :, :]
+        print("x1.shape", x1.shape)
         x1 = self.conv1_1(x1)
         x1 = self.bn1_1(x1)
         x1 = self.relu(x1)
         x1 = self.maxpool(x1)
+        print("x1.shape", x1.shape)
 
         x2 = x[:, :, ::8, :, :]
+        print("x2.shape", x2.shape)
         x2 = self.conv1_2(x2)
         x2 = self.bn1_2(x2)
         x2 = self.relu(x2)
         x2 = self.maxpool(x2)
+        print("x2.shape", x2.shape)
 
         x3 = x[:, :, ::4, :, :]
         x3 = self.conv1_3(x3)
@@ -478,10 +483,12 @@ class ResNet3D(nn.Module):
         x4 = self.maxpool(x4)
 
         x5 = x[:, :, :, :, :]
+        print("x5.shape", x5.shape)
         x5 = self.conv1_5(x5)
         x5 = self.bn1_5(x5)
         x5 = self.relu(x5)
         x5 = self.maxpool(x5)
+        print("x5.shape", x5.shape)
 
         x = torch.cat([x1, x2, x3, x4, x5], dim=2)
 
