@@ -609,8 +609,9 @@ if __name__ == '__main__':
     state_dict = model_zoo.load_url(model_urls['resnet50'])
     new_state_dict = part_state_dict(state_dict, model.state_dict())
     pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_dict and v.size() == model_dict[k].size()}
-    print(pretrained_state)
-    model.load_state_dict(pretrained_state)
+    #print(pretrained_state)
+    model_dict.update(pretrained_state)
+    model.load_state_dict(model_dict)
     print(net)
     input = (torch.FloatTensor(8, 3, 16, 224, 224))
     output = net(input)
