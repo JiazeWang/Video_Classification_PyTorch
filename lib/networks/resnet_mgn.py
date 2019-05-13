@@ -71,6 +71,7 @@ class Bottleneck3D_11113(nn.Module):
 
     def forward(self, x):
         residual = x
+        print("r1.shape:", residual.shape)
         x1 = x[:, :, 0:1, :, :]
         out1 = self.conv1_1(x1)
         out1 = self.bn1_1(out1)
@@ -105,9 +106,11 @@ class Bottleneck3D_11113(nn.Module):
 
         out = self.conv3(out)
         out = self.bn3(out)
+        print("out.shape:", out.shape)
 
         if self.downsample is not None:
             residual = self.downsample(x)
+            print("r2.shape:", residual.shape)
 
         out += residual
         out = self.relu(out)
