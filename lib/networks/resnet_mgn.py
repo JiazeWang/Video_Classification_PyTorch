@@ -601,7 +601,10 @@ def resnet50_mgn(pretrained=False, feat=False, **kwargs):
 if __name__ == '__main__':
 # Here I left a simple forward function.
 # Test the model, before you train it.
-    net = resnet50_mgn()
+    model = resnet50_mgn()
+    state_dict = model_zoo.load_url(model_urls['resnet50'])
+    new_state_dict = part_state_dict(state_dict, model.state_dict())
+    model.load_state_dict(new_state_dict)
     print(net)
     input = (torch.FloatTensor(8, 3, 16, 224, 224))
     output = net(input)
