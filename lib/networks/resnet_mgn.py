@@ -579,6 +579,31 @@ def resnet50_3d_lite(pretrained=False, feat=False, **kwargs):
             model.load_state_dict(new_state_dict)
     return model
 
+
+def resnet18_mgn(pretrained=False, feat=False, **kwargs):
+    """Constructs a ResNet-18 model.
+    Args:
+        pretrained (bool): If True, returns a model pre-trained on ImageNet
+    """
+    model = ResNet3D([Bottleneck3D_11113, Bottleneck3D_11133, Bottleneck3D_11333, Bottleneck3D_13333],
+                     [2, 2, 2, 2], feat=feat, **kwargs)
+    # import pdb
+    # pdb.set_trace()
+    if pretrained:
+        if kwargs['pretrained_model'] is None:
+            state_dict = model_zoo.load_url(model_urls['resnet50'])
+        else:
+            print("Using specified pretrain model")
+            state_dict = kwargs['pretrained_model']
+        if feat:
+            new_state_dict = part_state_dict(state_dict, model.state_dict())
+            #model.load_state_dict(new_state_dict)
+            model_dict = model.state_dict()
+            pretrained_state = {k:v for k,v in new_state_dict.items() if k in model_dict and v.size() == model_dict[k].size()}
+            model_dict.update(pretrained_state)
+            model.load_state_dict(model_dict)
+    return model
+
 def resnet50_mgn(pretrained=False, feat=False, **kwargs):
     """Constructs a ResNet-50 model.
     Args:
